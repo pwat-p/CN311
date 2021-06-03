@@ -8,7 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import sample.PianoRushDuel;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -16,20 +18,12 @@ import java.net.Socket;
 public class HomeController {
     @FXML
     private Button hostButton, joinButton;
-    @FXML
-    private Label status;
 
-    public void host(ActionEvent e) throws IOException {
-        Button b = (Button) e.getSource();
-        Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/host.fxml"));
-        stage.setScene(new Scene(loader.load(), 1280, 800));
+    public void host() throws IOException {
+        PianoRushDuel.setRoot("host");
     }
 
-    public void join(ActionEvent e) throws IOException {
-        Button b = (Button) e.getSource();
-        Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/join.fxml"));
-        stage.setScene(new Scene(loader.load(), 1280, 800));
+    public void join() throws IOException {
+        PianoRushDuel.setRoot("join");
     }
 }

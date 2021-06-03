@@ -1,19 +1,24 @@
 package sample.model;
 
 import javafx.concurrent.Task;
-import sample.helper.OpponentData;
-import sample.helper.UserInput;
+import sample.controller.GameRoomController;
+import sample.helper.JoinData;
+import sample.helper.HostData;
 
 import java.net.*;
 import java.io.*;
 
 public class JoinTask extends Task<Integer> {
-    UserInput u = new UserInput().getInstance();
-    OpponentData op = new OpponentData().getInstance();
+    HostData u = new HostData().getInstance();
+    JoinData j = new JoinData().getInstance();
+    GameRoomController g = new GameRoomController();
     PrintWriter pr;
+    BufferedReader bf;
+    Socket s;
 
     private String ip;
     private int port;
+    private int score = 0;
 
     public JoinTask(String ip, int port) {
         this.ip = ip;
@@ -23,28 +28,31 @@ public class JoinTask extends Task<Integer> {
     @Override
     protected Integer call() throws Exception {
         joinServer();
-        return 1;
+        return null;
     }
 
     private void joinServer() throws IOException {
-        Socket s = new Socket(ip,port);
+        s = new Socket(ip,port);
 
-        PrintWriter pr = new PrintWriter(s.getOutputStream());
-        pr.println(u.getName());
+        pr = new PrintWriter(s.getOutputStream());
+        pr.println(j.getName());
         pr.flush();
 
         InputStreamReader in = new InputStreamReader(s.getInputStream());
-        BufferedReader bf = new BufferedReader(in);
+        bf = new BufferedReader(in);
 
-        op.setPort(bf.readLine());
-        op.setVRange(bf.readLine());
-        op.setName(bf.readLine());
+        u.setPort(bf.readLine());
+        u.setVRange(bf.readLine());
+        u.setName(bf.readLine());
+        u.setSeed(Long.parseLong(bf.readLine()));
 
-        updateTitle(op.getVRange());
-        updateMessage(op.getName());
+        updateTitle(u.getVRange());
+        updateMessage(u.getName());
 
         if(bf.readLine().equals("start")) {
             updateTitle("start");
-        };
+        }
     }
+
+
 }

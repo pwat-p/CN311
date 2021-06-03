@@ -1,13 +1,15 @@
 package sample.helper;
 
-public class UserInput {
-    private static UserInput instance = new UserInput();
-    public static UserInput getInstance(){
+public class HostData {
+    private static HostData instance = new HostData();
+    public static HostData getInstance(){
         return instance;
     }
 
     private String name, ip, port, vRange;
+    private long seed;
     private boolean isHost;
+    private int score;
 
     public String getName() {
         return name;
@@ -37,10 +39,22 @@ public class UserInput {
         this.vRange = vRange;
     }
 
+    public long getSeed() { return seed; }
+    public void setSeed(long seed) { this.seed = seed; }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public boolean checkIsHost() {
         return isHost;
     }
     public void setIsHost(boolean isHost) {
         this.isHost = isHost;
     }
+
 }

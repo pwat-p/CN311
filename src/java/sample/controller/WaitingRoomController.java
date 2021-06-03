@@ -5,26 +5,29 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import sample.helper.OpponentData;
-import sample.helper.UserInput;
+import sample.PianoRushDuel;
+import sample.helper.JoinData;
+import sample.helper.HostData;
 import sample.model.HostTask;
 import sample.model.JoinTask;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
+import java.util.Random;
 
-public class WaitingRoomController {
-    private UserInput u = new UserInput().getInstance();
-    private OpponentData op = new OpponentData().getInstance();
+public class WaitingRoomController extends GameRoomController {
+    private HostData u = new HostData().getInstance();
+    private JoinData j = new JoinData().getInstance();
     private HostTask task;
     private JoinTask jTask;
+    private Random rand = new Random();
+
+
 
     @FXML
     private Label lName, rName, port, vRange;
@@ -39,7 +42,15 @@ public class WaitingRoomController {
         }
     }
 
+    @FXML
+    private void handleOnKeyPressed(KeyEvent event) {
+        System.out.println(event.getCode());
+    }
+
     private void hostIni() {
+        long seed = rand.nextLong();
+        u.setSeed(seed);
+
         lName.setText(u.getName());
         port.setText(u.getPort());
         vRange.setText(u.getVRange());
@@ -60,33 +71,36 @@ public class WaitingRoomController {
 
     private void joinIni() throws IOException {
 
-        jTask = new JoinTask(u.getIp() ,Integer.parseInt(u.getPort()));
+        jTask = new JoinTask(j.getIp() ,Integer.parseInt(j.getPort()));
         new Thread(jTask).start();
 
-        rName.setText(u.getName());
-        port.setText(u.getPort());
+        rName.setText(j.getName());
+        port.setText(j.getPort());
         vRange.textProperty().bind(jTask.titleProperty());
         lName.textProperty().bind(jTask.messageProperty());
 
-        vRange.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> ov, String t, String t1) {
-                if (vRange.getText().equals("start")) {
-                    startButton.setDisable(false);
-                    startButton.fire();
-                }
+        vRange.textProperty().addListener((ov, t, t1) -> {
+            if (vRange.getText().equals("start")) {
+                try {
+                    PianoRushDuel.setRoot("gameRoom",jTask);
+                } catch (IOException e) {}
             }
         });
-
     }
 
     public void run(ActionEvent e) throws IOException {
         if (u.checkIsHost()) {
             task.sendBuffer("start");
         }
+
         Button b = (Button) e.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gameRoom.fxml"));
-        stage.setScene(new Scene(loader.load(), 1280, 800));
+        FXMLLoader loader = new FXMLLoader(PianoRushDuel.class.getResource("/gameRoom.fxml"));
+        Parent parent = loader.load();
+        ReceiveData controller = loader.getController();
+        controller.initData(task);
+        Scene scene = new Scene(parent);
+        scene.getRoot().requestFocus();
+        stage.setScene(scene);
     }
 }

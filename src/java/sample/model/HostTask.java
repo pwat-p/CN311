@@ -1,18 +1,24 @@
 package sample.model;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
-import sample.helper.OpponentData;
-import sample.helper.UserInput;
+import sample.controller.GameRoomController;
+import sample.helper.JoinData;
+import sample.helper.HostData;
 
 import java.net.*;
 import java.io.*;
 
 public class HostTask extends Task<Integer> {
-    UserInput u = new UserInput().getInstance();
-    OpponentData op = new OpponentData().getInstance();
+    HostData u = new HostData().getInstance();
+    JoinData j = new JoinData().getInstance();
+    GameRoomController g = new GameRoomController();
     PrintWriter pr;
+    BufferedReader bf;
+    Socket s;
 
     private int port;
+    private int score = 0;
 
     public HostTask(int port) {
         this.port = port;
@@ -20,24 +26,19 @@ public class HostTask extends Task<Integer> {
 
     @Override
     protected Integer call() throws Exception {
-        startServer();
-        return 1;
+        hostServer();
+        return null;
     }
 
-    public void sendBuffer(String b) {
-        pr.println(b);
-        pr.flush();
-    }
-
-    private void  startServer() throws IOException {
+    private void hostServer() throws IOException {
         updateMessage("Waiting...");
         ServerSocket ss = new ServerSocket(port);
-        Socket s = ss.accept();
+        s = ss.accept();
 
         InputStreamReader in = new InputStreamReader(s.getInputStream());
-        BufferedReader bf = new BufferedReader(in);
-        op.setName(bf.readLine());
-        updateMessage(op.getName());
+        bf = new BufferedReader(in);
+        j.setName(bf.readLine());
+        updateMessage(j.getName());
 
         pr = new PrintWriter(s.getOutputStream());
         pr.println(u.getPort());
@@ -48,5 +49,14 @@ public class HostTask extends Task<Integer> {
 
         pr.println(u.getName());
         pr.flush();
+
+        pr.println(u.getSeed());
+        pr.flush();
     }
+
+    public void sendBuffer(String b) throws IOException {
+        pr.println(b);
+        pr.flush();
+    }
+
 }
