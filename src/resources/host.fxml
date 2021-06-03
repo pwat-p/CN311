@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -7,45 +8,50 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.HostController">
    <children>
-      <TextField fx:id="port" layoutX="597.0" layoutY="289.0" prefHeight="42.0" prefWidth="145.0" text="4999">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="125.0" layoutX="612.0" layoutY="132.0" stroke="BLACK" strokeType="INSIDE" width="668.0" />
+      <Line endX="850.0" endY="400.0" startY="400.0" />
+      <Line endX="1280.0" endY="400.0" startX="1100.0" startY="400.0" />
+      <TextField fx:id="port" layoutX="896.0" layoutY="381.0" prefHeight="42.0" prefWidth="205.0" text="4999">
          <font>
             <Font size="19.0" />
          </font>
       </TextField>
-      <Label alignment="CENTER" layoutX="565.0" layoutY="120.0" prefHeight="68.0" prefWidth="151.0" text="Host">
+      <Label alignment="CENTER" layoutX="876.0" layoutY="160.0" prefHeight="68.0" prefWidth="151.0" text="Host" textFill="WHITE">
          <font>
-            <Font size="39.0" />
+            <Font name="Lucida Fax Regular" size="56.0" />
          </font>
       </Label>
-      <Label layoutX="556.0" layoutY="293.0" prefHeight="34.0" prefWidth="41.0" text="Port">
+      <Label layoutX="855.0" layoutY="381.0" prefHeight="42.0" prefWidth="41.0" text="Port">
          <font>
-            <Font size="20.0" />
+            <Font name="Tw Cen MT Condensed" size="31.0" />
          </font>
       </Label>
-      <TextField fx:id="vRange" layoutX="597.0" layoutY="364.0" prefHeight="42.0" prefWidth="145.0" text="10">
+      <TextField fx:id="vRange" layoutX="896.0" layoutY="436.0" prefHeight="42.0" prefWidth="205.0" text="10">
          <font>
             <Font size="19.0" />
          </font>
       </TextField>
-      <Label layoutX="470.0" layoutY="364.0" prefHeight="42.0" prefWidth="127.0" text="Victory Range">
+      <Label layoutX="719.0" layoutY="436.0" prefHeight="42.0" prefWidth="177.0" text="Victory Range">
          <font>
-            <Font size="20.0" />
+            <Font name="Tw Cen MT" size="31.0" />
          </font>
       </Label>
-      <Button fx:id="startButton" layoutX="520.0" layoutY="445.0" mnemonicParsing="false" onAction="#run" prefHeight="53.0" prefWidth="242.0" text="Start Server">
+      <TextField fx:id="name" layoutX="896.0" layoutY="322.0" prefHeight="42.0" prefWidth="205.0" text="player">
          <font>
-            <Font size="25.0" />
+            <Font size="19.0" />
+         </font>
+      </TextField>
+      <Label layoutX="817.0" layoutY="322.0" prefHeight="42.0" prefWidth="76.0" text="Name">
+         <font>
+            <Font name="Tw Cen MT" size="31.0" />
+         </font>
+      </Label>
+      <Button fx:id="startButton" layoutX="612.0" layoutY="543.0" mnemonicParsing="false" onAction="#run" prefHeight="125.0" prefWidth="668.0" style="-fx-background-color: black;" text="Start Server" textFill="WHITE">
+         <font>
+            <Font name="Lucida Fax Regular" size="56.0" />
          </font>
       </Button>
-      <TextField fx:id="name" layoutX="597.0" layoutY="214.0" prefHeight="42.0" prefWidth="145.0" text="player">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </TextField>
-      <Label layoutX="541.0" layoutY="218.0" prefHeight="34.0" prefWidth="56.0" text="Name">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
+      <Line endX="615.0" endY="600.0" startY="600.0" />
+      <Line endX="615.0" endY="200.0" startY="200.0" />
    </children>
 </AnchorPane>

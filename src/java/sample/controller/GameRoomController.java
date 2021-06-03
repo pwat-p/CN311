@@ -1,8 +1,5 @@
 package sample.controller;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,7 +33,7 @@ public class GameRoomController implements ReceiveData {
     private ProgressBar progress = new ProgressBar();
 
     @FXML
-    private Button restartButton, quitButton;
+    private Button quitButton;
 
     @FXML
     private Rectangle   l30,l31,l32,r30,r31,r32,
@@ -53,7 +50,7 @@ public class GameRoomController implements ReceiveData {
     Random rand2 = new Random(u.getSeed());
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() throws IOException, InterruptedException {
         showButton(false);
 
         vRange = Integer.parseInt(u.getVRange());
@@ -99,12 +96,10 @@ public class GameRoomController implements ReceiveData {
         }
     }
 
-    private void gameStart() {
-        playing = true;
-
+    private void gameStart() throws InterruptedException {
         status.textProperty().addListener((ov, t, t1) -> {
             String sCode = status.getText();
-            if (sCode.equals("LWin")) {
+            if (sCode.equals(u.getName() + " Win!")) {
                 if (!u.checkIsHost()) {
                     try {
                         rTask.sendBuffer("L");
@@ -115,13 +110,13 @@ public class GameRoomController implements ReceiveData {
                             range.setText("" + (dif-1));
                             setRange();
                         }
-                        System.out.println("in Lwin");
                         showButton(true);
                     } catch (IOException e) {}
                 } else {
                     showButton(true);
+                    playing = false;
                 }
-            } else if (sCode.equals("RWin")) {
+            } else if (sCode.equals(j.getName() + " Win!")) {
                 if (u.checkIsHost()) {
                     try {
                         lTask.sendBuffer("L");
@@ -136,6 +131,7 @@ public class GameRoomController implements ReceiveData {
                     } catch (IOException e) {}
                 } else {
                     showButton(true);
+                    playing = false;
                 }
             } else if (sCode.equals("Move")) {
                 if (u.checkIsHost()) {
@@ -154,33 +150,26 @@ public class GameRoomController implements ReceiveData {
                     try {
                         lTask.sendBuffer("W");
                     } catch (IOException e) {}
-                    lTask.setStatus("LWin");
+                    lTask.setStatus(u.getName() + " Win!");
                 } else {
                     try {
                         rTask.sendBuffer("W");
                     } catch (IOException e) {}
-                    rTask.setStatus("RWin");
+                    rTask.setStatus(j.getName() + " Win!");
                 }
+                playing = false;
                 showButton(true);
-            } else if (sCode.equals("restart")) {
-                try {
-                    restart();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         });
     }
 
     private void hostSetting() throws IOException {
-        System.out.println("Host");
         lScore.setText("0");
         openLTask();
 
     }
 
     private void clientSetting() throws IOException {
-        System.out.println("Client");
         rScore.setText("0");
         openRTask();
 
@@ -583,20 +572,10 @@ public class GameRoomController implements ReceiveData {
 
     private void showButton(boolean b) {
         if (b) {
-            restartButton.setVisible(true);
             quitButton.setVisible(true);
-            if (!u.checkIsHost()) {
-                restartButton.setDisable(true);
-            }
         } else {
-            restartButton.setVisible(false);
             quitButton.setVisible(false);
-
         }
-    }
-
-    public void restart() throws IOException {
-        System.out.println("Host Restart");
     }
 
     public void quit() throws IOException {

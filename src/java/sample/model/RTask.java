@@ -55,14 +55,29 @@ public class RTask extends Task<Integer> {
             updateTitle("Move");
             readBuffer();
         } else if (b.equals("W")) {
-            updateTitle("LWin");
+            updateTitle(u.getName() + " Win!");
         } else if (b.equals("L")) {
-            updateTitle("RWin");
+            updateTitle(j.getName() + " Win!");
         } else if (b.charAt(0) == 'F') {
             updateTitle("F" + b.charAt(1));
-        } else if (b.equals("Restart")) {
-            System.out.println("Client Restart");
         }
+    }
+
+    public void countDown() throws InterruptedException {
+        updateMessage("Ready!");
+        Thread.sleep(2000);
+        updateMessage("5");
+        Thread.sleep(1000);
+        updateMessage("4");
+        Thread.sleep(1000);
+        updateMessage("3");
+        Thread.sleep(1000);
+        updateMessage("2");
+        Thread.sleep(1000);
+        updateMessage("1");
+        Thread.sleep(1000);
+        updateMessage("0");
+        updateTitle("Game Start");
     }
 }
 

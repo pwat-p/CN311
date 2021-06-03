@@ -10,12 +10,17 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.HomeController">
    <children>
-      <Button fx:id="hostButton" layoutX="612.0" layoutY="239.0" mnemonicParsing="false" onAction="#host" prefHeight="125.0" prefWidth="668.0" style="-fx-background-color: black;" text="Host" textFill="WHITE">
+      <ImageView fitHeight="160.0" fitWidth="425.0" layoutX="95.0" layoutY="400.0">
+         <image>
+            <Image url="@note.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="hostButton" contentDisplay="TOP" layoutX="612.0" layoutY="212.0" mnemonicParsing="false" onAction="#host" prefHeight="125.0" prefWidth="668.0" style="-fx-background-color: black;" text="Host" textFill="WHITE">
          <font>
-            <Font size="36.0" />
+            <Font name="Lucida Fax Regular" size="56.0" />
          </font>
       </Button>
-      <Label fx:id="status" alignment="CENTER" layoutY="337.0" prefHeight="110.0" prefWidth="611.0" text="Piano Rush">
+      <Label fx:id="status" alignment="CENTER" layoutX="34.0" layoutY="344.0" prefHeight="111.0" prefWidth="547.0" text="Piano Rush">
          <font>
             <Font name="SansSerif Bold" size="96.0" />
          </font>
@@ -28,21 +33,29 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <ImageView fitHeight="168.0" fitWidth="1280.0" layoutY="632.0">
-         <image>
-            <Image url="@bg.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="168.0" fitWidth="1280.0">
-         <image>
-            <Image url="@bg.jpg" />
-         </image>
-      </ImageView>
-      <Button fx:id="joinButton" layoutX="612.0" layoutY="435.0" mnemonicParsing="false" onAction="#join" prefHeight="125.0" prefWidth="668.0" style="-fx-background-color: black;" text="Join" textFill="WHITE">
+      <Button fx:id="joinButton" layoutX="611.0" layoutY="463.0" mnemonicParsing="false" onAction="#join" prefHeight="125.0" prefWidth="668.0" style="-fx-background-color: black;" text="Join" textFill="WHITE">
          <font>
-            <Font size="36.0" />
+            <Font name="Lucida Fax Regular" size="56.0" />
          </font>
       </Button>
       <Line endX="1280.0" endY="400.0" startX="560.0" startY="400.0" />
+      <Line endX="615.0" endY="275.0" startY="275.0" />
+      <ImageView fitHeight="153.0" fitWidth="1280.0">
+         <image>
+            <Image url="@bg.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="153.0" fitWidth="1280.0" layoutY="647.0">
+         <image>
+            <Image url="@bg.jpg" />
+         </image>
+      </ImageView>
+      <Line endX="615.0" endY="525.0" startY="525.0" />
+      <Line endX="50.0" endY="400.0" startY="400.0" />
+      <Label layoutX="417.0" layoutY="419.0" prefHeight="80.0" prefWidth="168.0" rotate="4.4" text="DUEL" textFill="#f20000">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="55.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

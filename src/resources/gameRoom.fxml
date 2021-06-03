@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.geometry.*?>
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyBoardListener" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.GameRoomController">
    <children>
-      <Label alignment="CENTER" layoutX="432.0" layoutY="14.0" prefHeight="123.0" prefWidth="418.0" text="Game Room">
+      <Label alignment="CENTER" layoutX="432.0" layoutY="14.0" prefHeight="123.0" prefWidth="418.0" text="Piano Rush">
          <font>
-            <Font size="55.0" />
+            <Font name="Lucida Fax Regular" size="55.0" />
          </font>
       </Label>
-      <Label fx:id="lName" alignment="CENTER" layoutX="460.0" layoutY="300.0" prefHeight="49.0" prefWidth="142.0" text="&lt;lName&gt;">
+      <Label fx:id="lName" alignment="CENTER" layoutX="460.0" layoutY="300.0" prefHeight="49.0" prefWidth="142.0" text="&lt;lName&gt;" textFill="RED">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Label fx:id="rName" alignment="CENTER" layoutX="678.0" layoutY="300.0" prefHeight="49.0" prefWidth="142.0" text="&lt;rName&gt;">
+      <Label fx:id="rName" alignment="CENTER" layoutX="678.0" layoutY="300.0" prefHeight="49.0" prefWidth="142.0" text="&lt;rName&gt;" textFill="#1a00ff">
          <font>
             <Font size="30.0" />
          </font>
@@ -57,19 +56,19 @@
       <Rectangle fx:id="r32" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="1130.0" stroke="WHITE" strokeType="INSIDE" width="150.0" />
       <Rectangle fx:id="r31" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="980.0" stroke="WHITE" strokeType="INSIDE" width="150.0" />
       <Rectangle fx:id="r30" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="830.0" stroke="WHITE" strokeType="INSIDE" width="150.0" />
-      <Label fx:id="range" alignment="CENTER" layoutX="569.0" layoutY="414.0" prefHeight="53.0" prefWidth="142.0" text="&lt;range&gt;">
+      <Label fx:id="range" alignment="CENTER" layoutX="569.0" layoutY="401.0" prefHeight="53.0" prefWidth="142.0" text="&lt;range&gt;">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Label fx:id="lScore" alignment="CENTER" layoutX="471.0" layoutY="474.0" prefHeight="53.0" prefWidth="121.0" text="&lt;lScore&gt;">
+      <Label fx:id="lScore" alignment="CENTER" layoutX="474.0" layoutY="547.0" prefHeight="80.0" prefWidth="115.0" text="&lt;lScore&gt;" textFill="RED">
          <font>
-            <Font size="28.0" />
+            <Font size="33.0" />
          </font>
       </Label>
-      <Label fx:id="rScore" alignment="CENTER" layoutX="689.0" layoutY="474.0" prefHeight="53.0" prefWidth="121.0" text="&lt;rScore&gt;">
+      <Label fx:id="rScore" alignment="CENTER" layoutX="686.0" layoutY="538.0" prefHeight="97.0" prefWidth="127.0" text="&lt;rScore&gt;" textFill="#1900ff">
          <font>
-            <Font size="28.0" />
+            <Font size="33.0" />
          </font>
       </Label>
       <Line endX="150.0" endY="800.0" startX="150.0" />
@@ -84,29 +83,29 @@
       <Line endX="1280.0" endY="600.0" startX="830.0" startY="600.0" />
       <Line endX="1280.0" endY="400.0" startX="830.0" startY="400.0" />
       <Line endX="1280.0" endY="200.0" startX="830.0" startY="200.0" />
-      <Label fx:id="status" alignment="CENTER" layoutX="572.0" layoutY="185.0" prefHeight="76.0" prefWidth="136.0" text="&lt;status&gt;">
+      <Label fx:id="status" alignment="CENTER" layoutX="451.0" layoutY="186.0" prefHeight="80.0" prefWidth="379.0" text="&lt;status&gt;">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
-      <Button fx:id="restartButton" layoutX="547.0" layoutY="572.0" mnemonicParsing="false" onAction="#restart" prefHeight="56.0" prefWidth="187.0" text="Restart" visible="false">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Button>
       <Button fx:id="quitButton" layoutX="547.0" layoutY="644.0" mnemonicParsing="false" onAction="#quit" prefHeight="56.0" prefWidth="187.0" text="Quit" visible="false">
          <font>
             <Font size="26.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="504.0" layoutY="113.0" prefHeight="49.0" prefWidth="136.0" text="Victory Range :">
+      <Label alignment="CENTER" layoutX="495.0" layoutY="113.0" prefHeight="49.0" prefWidth="195.0" text="Victory Range :">
+         <font>
+            <Font name="Tw Cen MT" size="31.0" />
+         </font>
+      </Label>
+      <Label fx:id="vR" layoutX="692.0" layoutY="113.0" prefHeight="56.0" prefWidth="84.0" text="&lt;vR&gt;">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="vR" layoutX="640.0" layoutY="113.0" prefHeight="49.0" prefWidth="84.0" text="&lt;vR&gt;">
+      <Label alignment="CENTER" layoutX="584.0" layoutY="490.0" prefHeight="56.0" prefWidth="115.0" text="Score">
          <font>
-            <Font size="18.0" />
+            <Font name="Lucida Fax Regular" size="36.0" />
          </font>
       </Label>
    </children>

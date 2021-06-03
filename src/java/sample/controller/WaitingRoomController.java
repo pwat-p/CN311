@@ -44,7 +44,7 @@ public class WaitingRoomController extends GameRoomController {
 
     @FXML
     private void handleOnKeyPressed(KeyEvent event) {
-        System.out.println(event.getCode());
+//        System.out.println(event.getCode());
     }
 
     private void hostIni() {

@@ -1,6 +1,5 @@
 package sample.model;
 
-import javafx.application.Platform;
 import javafx.concurrent.Task;
 import sample.controller.GameRoomController;
 import sample.helper.JoinData;
