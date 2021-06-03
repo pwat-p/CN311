@@ -38,6 +38,7 @@ public class PianoRushDuel extends Application {
         return fxmlLoader.load();
     }
 
+    
     public static Parent loadFXML(String fxml, Object data) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PianoRushDuel.class.getResource("/" + fxml + ".fxml"));
         Parent parent = fxmlLoader.load();
